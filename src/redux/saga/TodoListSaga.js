@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { call, fork, put, take, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, fork, delay, put, take, takeEvery, takeLatest } from 'redux-saga/effects';
 import { STATUS_CODE } from '../../utils/constants/SettingSystem';
+import { DISPLAY_LOADING, HIDE_LOADING } from '../constants/LoadingConst';
 import { ADD_TASK_API, CHECK_TASK_API, DELETE_TASK_API, GET_TASKLIST_API, GET_TASK_API, REJECT_TASK_API } from '../constants/TodoListConst';
 import { todoListService } from '../services/TodoListService';
 /*
@@ -8,8 +9,20 @@ redux co 2 loai action
 loai 1: action => object 
 loai 2: action => function (xu ly api hoac call function khac), dung middleware
 */
+// call nhan ham tra ve promise
 
+/*
+1/1/2021  Nhi
+Action getTaskList....
+*/
 function* getTaskApiAction(action) {
+
+    yield put({
+        type: DISPLAY_LOADING
+    })
+
+    yield delay(5000);
+
     let { data, status } = yield call(todoListService.getTaskApi)
     try {
         // Sau khi thanh cong, dung put (saga) ~ dispatch(thunk)
@@ -26,6 +39,10 @@ function* getTaskApiAction(action) {
     catch (err) {
         console.log("err");
     }
+
+    yield put({
+        type: HIDE_LOADING
+    })
 }
 
 export function* theoDoiActionGetTaskApi() {

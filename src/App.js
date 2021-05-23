@@ -4,7 +4,7 @@ import TodoListrfc from './todolist/TodoListrfc';
 import TodoListrcc from './todolist/TodoListrcc';
 import TodoListRedux from './todolist/TodoListRedux';
 import BaiTapTodoListSaga from './BaiTapToDoListSaga/BaiTapTodoListSaga';
-import LoadingComponent from './globalsetting/loadingComponent/LoadingComponent';
+import LoadingComponent from './globalsetting/loadingComponent/LoadingComponent.js';
 
 function App() {
   return (

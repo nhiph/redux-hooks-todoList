@@ -1,5 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import TodoListReducer from './TodoListReducer';
+import LoadingReducer from './LoadingReducer';
 import reduxThunk from 'redux-thunk';
 
 // middleware saga
@@ -9,7 +10,8 @@ import { RootSaga } from "../saga/RootSaga";
 const middleWareSage = createMiddleWareSaga();
 
 const RootReducer = combineReducers({
-    TodoListReducer
+    TodoListReducer,
+    LoadingReducer
 })
 
 // gan middleware thunk va saga vao

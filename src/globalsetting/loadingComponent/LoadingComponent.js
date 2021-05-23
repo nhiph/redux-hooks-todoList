@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styleLoading from './LoadingComponent.module.css';
+import {useSelector} from 'react-redux'
 
 export default function LoadingComponent() {
-    return (
-        <div className={styleLoading.bgLoading}>
-            <img  src={require('../../BaiTapToDoListSaga/id-loading-1.gif')}/>
-        </div>
-    )
+
+    const {isLoading} = useSelector(state => state.LoadingReducer)
+
+    if(isLoading){
+        return (
+
+            <div className={styleLoading.bgLoading}>
+                <img  src={require('../../assets/imgLoading/loading.gif')}/>
+            </div>
+        )
+    }else{
+        return '';
+    }
+    
 }
